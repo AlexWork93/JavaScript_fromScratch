@@ -104,7 +104,19 @@ const sortedNumbersArray = unsortedNumbersArray.sort(function (a, b) {
 console.log(sortedNumbersArray);
 //[ 5, 6, 6, 12, 13, 23, 41, 43, 43, 54, 123, 234, 434, 786, 1324 ]
 
+// To put one object into another use Objects.assign(mainObject, objectForAddition)
 
+const objectNumberOne = {
+    a: 50,
+    b: 23
+}
+
+const objectNumberTwo = {
+    c: 540,
+    d: 233
+}
+
+console.log(Object.assign(objectNumberOne, objectNumberTwo)); //{ a: 50, b: 23, c: 540, d: 233 }
 
 
 
