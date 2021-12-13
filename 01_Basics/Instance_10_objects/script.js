@@ -1,11 +1,44 @@
-
+"use strict"
 
 
 const objectExample = {
-    nestedObject1: {},
-    nestedObject2: {},
-    private : false
+    name: 'nameOfTestObject',
+    number: 12345,
+    colors: {
+        border: 'black',
+        background: 'red'
+    },
+    private: false
 };
 
-const lengthOfObject = ;
-console.log(lengthOfObject);
+console.log(objectExample.name);
+console.log(objectExample["name"]);
+
+console.log(objectExample.colors.background);
+
+for (let key in objectExample) {
+    if (typeof(objectExample[key]) === "object"){
+        for (let nestedObjectKey in objectExample[key]) {
+            console.log(`There are ${nestedObjectKey} : ${objectExample[key][nestedObjectKey]} inside ${key}`);
+        }
+    }else {
+        console.log(`There are ${key} : ${objectExample[key]}`);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

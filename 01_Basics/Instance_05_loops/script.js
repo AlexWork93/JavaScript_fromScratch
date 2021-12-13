@@ -33,7 +33,7 @@ console.log("\n\n\n");
 
 
 
-//For loop specifically for  arays
+//For loop specifically for  arrays
 arr.forEach(printArray);
 
 function printArray(arrayElement){
