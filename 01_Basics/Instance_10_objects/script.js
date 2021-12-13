@@ -8,6 +8,9 @@ const objectExample = {
         border: 'black',
         background: 'red'
     },
+    nestedFunction: function (){
+        console.log(`Here might be some logic, like printing a name '${this.name}' and number '${this.number}'`);
+    },
     private: false
 };
 
@@ -32,6 +35,7 @@ for (let key in objectExample) {
 
 console.log(`Length of objectExample ${Object.keys(objectExample).length}`)
 
+objectExample.nestedFunction();
 
 
 
