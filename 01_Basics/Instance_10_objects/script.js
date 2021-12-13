@@ -17,16 +17,20 @@ console.log(objectExample["name"]);
 console.log(objectExample.colors.background);
 
 for (let key in objectExample) {
-    if (typeof(objectExample[key]) === "object"){
-        for (let nestedObjectKey in objectExample[key]) {
-            console.log(`There are ${nestedObjectKey} : ${objectExample[key][nestedObjectKey]} inside ${key}`);
+    let tempValue1 = objectExample[key];
+    if (typeof(tempValue1) === "object"){
+        for (let nestedObjectKey in tempValue1) {
+            let tempValue2 = tempValue1[nestedObjectKey];
+            console.log(`There are ${nestedObjectKey} : ${tempValue2} inside ${key}`);
         }
     }else {
-        console.log(`There are ${key} : ${objectExample[key]}`);
+        console.log(`There are ${key} : ${tempValue1}`);
     }
 }
 
+// Objects don't have length parameter. To get length of object would be a good idea get an array of keys from object and then get length of this array
 
+console.log(`Length of objectExample ${Object.keys(objectExample).length}`)
 
 
 
