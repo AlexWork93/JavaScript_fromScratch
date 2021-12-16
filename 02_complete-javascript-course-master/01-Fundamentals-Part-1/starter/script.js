@@ -27,8 +27,8 @@
 // }
 //
 // const John = {
-//     weight: 95,
-//     height: 1.88,
+//     weight: 92,
+//     height: 1.95,
 //     calculateBMI: function () {
 //         const bmi = this.weight / (this.height ** 2);
 //         console.log(bmi);
