@@ -40,31 +40,31 @@
 //         return this.weight / (this.height ** 2);
 //     }
 // }
-//
-// const Mark = {
-//     weight: 95,
-//     height: 1.88,
-//     calculateBMI: function (){
-//         return this.weight / (this.height ** 2);
-//     }
-// }
-//
-// const John = {
-//     weight: 85,
-//     height: 1.76,
-//     calculateBMI: function (){
-//         return this.weight / (this.height ** 2);
-//     }
-// }
-//
-// const markHigherBMI = Mark.calculateBMI() > John.calculateBMI();
-// let outputMess = ``;
-// if (markHigherBMI) {
-//     outputMess = `Mark BMI ${Mark.calculateBMI()} greater than John BMI ${John.calculateBMI()}`
-// } else {
-//     outputMess = `John BMI ${John.calculateBMI()} greater than Mark BMI ${Mark.calculateBMI()} `
-// }
-// console.log(outputMess);
+
+const Mark = {
+    weight: 95,
+    height: 1.88,
+    calculateBMI: function (){
+        return this.weight / (this.height ** 2);
+    }
+}
+
+const John = {
+    weight: 85,
+    height: 1.76,
+    calculateBMI: function (){
+        return this.weight / (this.height ** 2);
+    }
+}
+
+const markHigherBMI = Mark.calculateBMI() > John.calculateBMI();
+let outputMess = ``;
+if (markHigherBMI) {
+    outputMess = `Mark BMI ${Mark.calculateBMI()} greater than John BMI ${John.calculateBMI()}`
+} else {
+    outputMess = `John BMI ${John.calculateBMI()} greater than Mark BMI ${Mark.calculateBMI()} `
+}
+console.log(outputMess);
 
 //Coding Challenge #3
 // There are two gymnastics teams, Dolphins and Koalas. They compete against each
@@ -128,12 +128,47 @@ for (let i = 0; i < competition.length; i++) {
     }
 }
 
+//Coding Challenge #4
+// Steven wants to build a very simple tip calculator for whenever he goes eating in a
+// restaurant. In his country, it's usual to tip 15% if the bill value is between 50 and
+// 300. If the value is different, the tip is 20%.
+// Your tasks:
+// 1. Calculate the tip, depending on the bill value. Create a variable called 'tip' for
+// this. It's not allowed to use an if/else statement 😅 (If it's easier for you, you can
+// start with an if/else statement, and then try to convert it to a ternary
+// operator!)
+// 2. Print a string to the console containing the bill value, the tip, and the final value
+// (bill + tip). Example: “The bill was 275, the tip was 41.25, and the total value
+// 316.25”
+// Test data:
+// §
+// Data 1: Test for bill values 275, 40 and 430
+// Hints:
+// § To calculate 20% of a value, simply multiply it by 20/100 = 0.2
+// § Value X is between 50 and 300, if it's >= 50 && <= 300
 
 
+const steven = {
+    bill: 0,
+    tip: 0
+}
 
+function calculateTip  (){
+    return (steven.bill > 50 && steven.bill < 300) ? steven.bill * 15/100 : steven.bill * 20/100;
+}
 
+function calculateBill (bill) {
+    steven.bill = bill;
+    steven.tip = calculateTip()
+    console.log(`The bill was ${steven.bill}, `
+        + `the tip was ${steven.tip}, ` +
+        `and the total value ${steven.bill + steven.tip}`)
+}
 
-
+calculateBill(20);
+calculateBill(100);
+calculateBill(300);
+calculateBill(350);
 
 
 
