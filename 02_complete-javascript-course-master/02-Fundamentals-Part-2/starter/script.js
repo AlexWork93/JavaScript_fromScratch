@@ -1,4 +1,4 @@
-//Coding Challenge #1
+// Coding Challenge #1
 // Back to the two gymnastics teams, the Dolphins and the Koalas! There is a new
 // gymnastics discipline, which works differently.
 // Each team competes 3 times, and then the average of the 3 scores is calculated (so
@@ -179,6 +179,55 @@ if (markM.calcBMI() > johnS.calcBMI()) {
 // length of the array (because that's the number of elements)
 // 4.3.
 // Call the function with the 'totals' array
+
+
+
+const tips1 = [],
+    bills1 = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52],
+    total1 = [],
+    tipRate1 = [];
+
+function calcTip1(bill, key) {
+    if (bill > 50 && bill < 300) {
+        tipRate1.push('15%');
+        return bill * 15 / 100;
+    } else {
+        tipRate1.push('20%');
+        return bill * 20 / 100;
+    }
+}
+
+for (const billsKey in bills1) {
+    tips1.push(calcTip1(bills1[billsKey], billsKey));
+    total1.push(tips1[billsKey] + bills1[billsKey]);
+}
+
+for (const tipsKey in tips1) {
+    console.log(`Bill ${bills1[tipsKey]} \ntip ${tips1[tipsKey]} \ntip rate ${tipRate1[tipsKey]} \ntotal prise ${total1[tipsKey]}\n`);
+}
+
+function calcAverage1 (arrayOfSomething) {
+    let res = 0;
+    for (const arrayOfSomethingKey in arrayOfSomething) {
+        res += arrayOfSomething[arrayOfSomethingKey];
+    }
+    return res / arrayOfSomething.length;
+}
+
+console.log(`Average total bill ${calcAverage1(total1)}`);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
