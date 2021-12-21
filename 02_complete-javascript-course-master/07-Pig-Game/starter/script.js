@@ -25,7 +25,6 @@ buttonRoll.addEventListener('click', function () {
         document
             .querySelector(`#current--${player}`)
             .textContent = String(currentScoreStorage[player]);
-
     } else {
         holdScore();
         changePlayer();
