@@ -69,15 +69,7 @@ buttonRoll.addEventListener('click', function () {
         document.querySelector(`#score--${player}`).textContent = String(scoreStorage[player]);
 
     }else {
-        document.querySelector(`#current--${player}`).textContent = String(diceValue);
-        scoreStorage[player] += diceValue;
-        document.querySelector(`#score--${player}`).textContent = String(scoreStorage[player]);
-
-    }
-    if (diceValue === 1 && player === 0){
-        player = 1;
-    }else if(diceValue === 1 && player === 1){
-        player = 0;
+        player = player === 0 ? 1 : 0;
     }
 })
 
