@@ -28,9 +28,7 @@
 // };
 //
 //
-// const buttonNew = document.querySelector('.btn--new');
-// const buttonRoll = document.querySelector('.btn--roll');
-// const buttonHold = document.querySelector('.btn--hold');
+
 //
 // function selectPlayer(playerToOn, playerToOff){
 //     console.log('asdasdsad');
@@ -45,13 +43,43 @@
 const scoreEl01 = document.querySelector('#score--0');
 const scoreEl02 = document.querySelector('#score--1');
 const diceEL = document.querySelector('.dice');
+const buttonNew = document.querySelector('.btn--new');
+const buttonRoll = document.querySelector('.btn--roll');
+const buttonHold = document.querySelector('.btn--hold');
+const currentScore01 = document.querySelector('#current--0');
+const currentScore02 = document.querySelector('#current--1');
+let player = 0;
+const scoreStorage = [0, 0];
 
-scoreEl01.textContent = 0;
-scoreEl02.textContent = 0;
+scoreEl01.textContent = String(scoreStorage[0]);
+scoreEl02.textContent = String(scoreStorage[1]);
 
 diceEL.classList.add('hidden');
 
+buttonRoll.addEventListener('click', function () {
+    //Set current dice val
+    const diceValue =  Math.trunc(Math.random() * 6) + 1;
+    //Show corresponding dice image
+    diceEL.classList.remove('hidden');
+    diceEL.src = `dice-${diceValue}.png`;
+    //check for rolled value and select another player
+    if (diceValue !== 1){
+        document.querySelector(`#current--${player}`).textContent = String(diceValue);
+        scoreStorage[player] += diceValue;
+        document.querySelector(`#score--${player}`).textContent = String(scoreStorage[player]);
 
+    }else {
+        document.querySelector(`#current--${player}`).textContent = String(diceValue);
+        scoreStorage[player] += diceValue;
+        document.querySelector(`#score--${player}`).textContent = String(scoreStorage[player]);
+
+    }
+    if (diceValue === 1 && player === 0){
+        player = 1;
+    }else if(diceValue === 1 && player === 1){
+        player = 0;
+    }
+})
 
 
 
