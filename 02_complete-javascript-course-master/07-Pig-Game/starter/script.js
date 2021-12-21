@@ -1,43 +1,5 @@
 'use strict';
 
-//
-// const playerFirst = {
-//     score: document.querySelector('#score--0'),
-//     scoreValue: 0,
-//     currentScore: document.querySelector('#current--0'),
-//     currentScoreValue: 0,
-//     player: document.querySelector('.player--0'),
-//
-//     selectPlayer: function (){
-//         selectPlayer(this.player, playerSecond.player)
-//     }
-// };
-//
-// const playerSecond = {
-//     score: document.querySelector('#score--1'),
-//     scoreValue: 0,
-//     currentScore: document.querySelector('#current--1'),
-//     currentScoreValue: 0,
-//     player: document.querySelector('.player--1'),
-//
-//
-//     selectPlayer: function (){
-//         selectPlayer(this.player, playerFirst.player)
-//     }
-//
-// };
-//
-//
-
-//
-// function selectPlayer(playerToOn, playerToOff){
-//     console.log('asdasdsad');
-//     playerToOn.classList.add('player--active');
-//     playerToOff.classList.remove('player--active');
-// }
-//
-// buttonNew.addEventListener('click', playerSecond.selectPlayer);
-// buttonRoll.addEventListener('click', playerFirst.selectPlayer);
 
 
 const scoreEl01 = document.querySelector('#score--0');
@@ -46,37 +8,82 @@ const diceEL = document.querySelector('.dice');
 const buttonNew = document.querySelector('.btn--new');
 const buttonRoll = document.querySelector('.btn--roll');
 const buttonHold = document.querySelector('.btn--hold');
-const currentScore01 = document.querySelector('#current--0');
-const currentScore02 = document.querySelector('#current--1');
-let player = 0;
-const scoreStorage = [0, 0];
 
-scoreEl01.textContent = String(scoreStorage[0]);
-scoreEl02.textContent = String(scoreStorage[1]);
+let player,
+    totalScoreStorage,
+    currentScoreStorage;
 
-diceEL.classList.add('hidden');
+startGame();
 
 buttonRoll.addEventListener('click', function () {
     //Set current dice val
-    const diceValue =  Math.trunc(Math.random() * 6) + 1;
+    const diceValue = Math.trunc(Math.random() * 6) + 1;
     //Show corresponding dice image
     diceEL.classList.remove('hidden');
     diceEL.src = `dice-${diceValue}.png`;
     //check for rolled value and select another player
-    if (diceValue !== 1){
-        document.querySelector(`#current--${player}`).textContent = String(diceValue);
-        scoreStorage[player] += diceValue;
-        document.querySelector(`#score--${player}`).textContent = String(scoreStorage[player]);
+    if (diceValue !== 1) {
+        currentScoreStorage[player] += diceValue;
+        document
+            .querySelector(`#current--${player}`)
+            .textContent = String(currentScoreStorage[player]);
 
-    }else {
-        player = player === 0 ? 1 : 0;
+    } else {
+        holdScore();
+        changePlayer();
     }
 })
 
+buttonHold.addEventListener('click', function () {
+    holdScore();
+    if (totalScoreStorage[player] >= 100) {
+        buttonRoll.classList.add('hidden');
+        buttonHold.classList.add('hidden');
+        diceEL.classList.add('hidden');
+    } else {
+        changePlayer();
+    }
+});
 
+buttonNew.addEventListener('click', startGame);
 
+function holdScore() {
+    totalScoreStorage[player] += currentScoreStorage[player];
+    document
+        .querySelector(`#score--${player}`)
+        .textContent = String(totalScoreStorage[player]);
+    currentScoreStorage[player] = 0;
+    document
+        .querySelector(`#current--${player}`)
+        .textContent = String(0);
+}
 
+function changePlayer() {
+    document
+        .querySelector(`.player--${player}`)
+        .classList.remove('player--active');
+    player = player === 0 ? 1 : 0;
+    document
+        .querySelector(`.player--${player}`)
+        .classList.add('player--active');
+}
 
+function startGame() {
+    player = 0;
+    totalScoreStorage = [0, 0];
+    currentScoreStorage = [0, 0];
+    scoreEl01.textContent = String(totalScoreStorage[0]);
+    scoreEl02.textContent = String(totalScoreStorage[1]);
+    if (!diceEL.classList.contains('hidden')){
+        diceEL.classList.add('hidden');
+    }
+    if (buttonRoll.classList.contains('hidden')){
+        buttonRoll.classList.remove('hidden');
+    }
+    if (buttonHold.classList.contains('hidden')){
+        buttonHold.classList.remove('hidden');
+    }
+}
 
 
 
