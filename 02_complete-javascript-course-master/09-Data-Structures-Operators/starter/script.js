@@ -212,12 +212,101 @@ const scorers = {}
 
 for (const value of game.scored) {
 
-    if (Object.keys(scorers).includes(value)){
+    if (Object.keys(scorers).includes(value)) {
         scorers[value] += 1;
-    }else scorers[value] = 1;
+    } else scorers[value] = 1;
     console.log(value);
 }
 console.log(scorers);
+
+
+//SET
+
+const setExample = new Set(['pizza', 'pasta', 'pizza', 'risotto', 'pizza']);
+
+console.log(setExample); //Automatically remove all duplications
+
+console.log(setExample.size); // NOT LENGTH return size of set
+
+console.log(setExample.has('pasta')); // NOT INCLUDE returns boolean if it has or not
+
+//To add new element
+setExample.add('pelmeni');
+setExample.add('pelmeni');
+
+console.log(setExample); //only one of add operations was succeeded
+
+//To remove element from set
+setExample.delete('pelmeni');
+console.log(setExample);
+
+//Sets can be used for taking unique elements from array for some reasons
+
+const arrayOfSomeValues = ['pen', 'brush', 'pencil', 'brush', 'pencil', 'brush', 'brush', 'pencil', 'brush', 'eraser', 'pencil', 'brush', 'brush', 'pencil', 'pencil', 'pen', 'eraser'];
+console.log(arrayOfSomeValues);
+const uniqueArrayOfSomeValues = [...new Set(arrayOfSomeValues)];
+console.log(uniqueArrayOfSomeValues);
+//Or we need just an amount of unique elements
+console.log(new Set(arrayOfSomeValues).size);
+
+//MAP
+
+//vfp is a data structure for storing data in format key-value.
+// Unlike objects, key value of maps can be represented by any datatype instead strings in objects
+
+//To add new element to map use 'set' keyword
+const mapExample = new Map();
+mapExample.set('this is key', 'this is value');
+mapExample.set('this is another key', 'another value');
+console.log(mapExample);
+//even if we have already set a key with string value, we can set a key with another datatype
+
+mapExample.set(50, 'value for key with number datatype');
+console.log(mapExample);
+//it is possible to pass an array or something another like a value
+
+mapExample.set('key for array value', ['pizza', 'pasta', 'pizza', 'risotto', 'pizza']);
+console.log(mapExample);
+
+//to retrieve value from map we could pass key with keyword 'get'
+console.log(mapExample.get(50));
+
+//Boolean type is too applicable to be a key
+
+mapExample
+    .set('open', 11)
+    .set('close', 23)
+    .set(true, 'we are open')
+    .set(false, 'we are close');
+const currentTime = Math.trunc(Math.random() * 24);
+console.log(currentTime);
+console.log(mapExample.get(currentTime > mapExample.get('open') && currentTime < mapExample.get('close')));
+
+//method has also applicable for maps
+console.log(mapExample.has(50));
+console.log(mapExample.has(501));
+
+//it has size
+console.log(mapExample.size)
+
+//and delete
+console.log(mapExample.has(50));
+mapExample.delete(50);
+console.log(mapExample.has(50));
+mapExample.set(50, 'value for key with number datatype');
+console.log(mapExample.has(50));
+
+//also it is possible to go something like this
+
+mapExample.set(document.querySelector('h1'), 'Heading');//in key field in devTools console we can see h1 element
+console.log(mapExample);
+
+
+
+
+
+
+
 
 
 
