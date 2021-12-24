@@ -302,6 +302,107 @@ mapExample.set(document.querySelector('h1'), 'Heading');//in key field in devToo
 console.log(mapExample);
 
 
+//convert object to map
+
+const hoursMap = new Map(Object.entries(restaurant.openingHours));
+console.log(hoursMap);
+
+// the best way to use for loop with maps, is to destructure it into key-value pairs
+
+for (const [key, value] of hoursMap) {
+
+}
+
+const question = new Map([
+    ['question', 'What is the best programming language in the world'],
+    [1, 'java'],
+    [2, 'javaScript'],
+    [3, 'C'],
+    ['correct', 2],
+    [true, 'Correct'],
+    [false, 'Try again']
+]);
+
+console.log(question.get('question'));
+for (const [key, value] of question) {
+    if (typeof key === 'number') {
+        console.log(`${key}). ${value}`);
+    }
+}
+// const answer = Number(prompt('Your answer'));
+// console.log(question.get(question.get('correct') === answer))
+
+
+//convert map to an array
+console.log(...question); //returns an array for every entry with key-value pair
+console.log(...question.keys()); //returns an array with all keys
+console.log(...question.values()); //returns an array with all values
+
+//WHAT DATA STRUCTURE USE?
+
+//Coding Challenge #3
+// Let's continue with our football betting app! This time, we have a map called
+// 'gameEvents' (see below) with a log of the events that happened during the
+// game. The values are the events themselves, and the keys are the minutes in which
+// each event happened (a football game has 90 minutes plus some extra time).
+// Your tasks:
+// 1. Create an array 'events' of the different game events that happened (no
+// duplicates)
+// 2. After the game has finished, is was found that the yellow card from minute 64
+// was unfair. So remove this event from the game events log.
+// 3. Compute and log the following string to the console: "An event happened, on
+// average, every 9 minutes" (keep in mind that a game has 90 minutes)
+// 4. Loop over 'gameEvents' and log each element to the console, marking
+// whether it's in the first half or second half (after 45 min) of the game, like this:
+// ⚽
+// [FIRST HALF] 17:
+// GOAL
+
+const gameEvents = new Map([
+    [17, '⚽ GOAL'],
+    [36, '🔁 Substitution'],
+    [47, '⚽ GOAL'],
+    [61, '🔁 Substitution'],
+    [64, '🔶 Yellow card'],
+    [69, '🔴 Red card'],
+    [70, '🔁 Substitution'],
+    [72, '🔁 Substitution'],
+    [76, '⚽ GOAL'],
+    [80, '⚽ GOAL'],
+    [92, '🔶 Yellow card'],
+]);
+
+// 1. Create an array 'events' of the different game events that happened (no
+// duplicates)
+
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+console.log(typeof events);
+// 2. After the game has finished, is was found that the yellow card from minute 64
+// was unfair. So remove this event from the game events log.
+//gameEvents.delete(64);
+console.log(gameEvents);
+// 3. Compute and log the following string to the console: "An event happened, on
+// average, every 9 minutes" (keep in mind that a game has 90 minutes)
+let average = 0
+for (const key of gameEvents.keys()) {
+    key < 90 && average++;
+}
+average = 90 / average;
+console.log(average);
+
+
+// 4. Loop over 'gameEvents' and log each element to the console, marking
+// whether it's in the first half or second half (after 45 min) of the game, like this:
+
+
+for (const [key, value] of gameEvents) {
+    console.log(`${key <= 45 ? 'First half' : 'Second half'}: ${value}`);
+}
+
+
+
+
 
 
 
