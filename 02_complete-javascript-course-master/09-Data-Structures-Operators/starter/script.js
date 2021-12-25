@@ -400,6 +400,97 @@ for (const [key, value] of gameEvents) {
     console.log(`${key <= 45 ? 'First half' : 'Second half'}: ${value}`);
 }
 
+//HOW TO WORK WITH THE STRINGS
+
+const airline = "TAP Air Ukraine";
+const plane = 'A320';
+
+console.log(airline.length);
+console.log(airline[1]);
+
+console.log(airline.indexOf('A'));
+console.log(airline.lastIndexOf('A'));
+console.log(airline.indexOf('D')); //-1, because it does not actually exist
+
+//slice method
+console.log(airline.slice(4)); //only with begin(included) parameter
+console.log(airline.slice(4, 7)); //with both begin and end(not included) parameters
+
+console.log(airline.slice(airline.indexOf('U')));
+
+//example of extracting of first word
+console.log(airline.slice(0, airline.indexOf(' ')));
+//example of extracting of first word
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+//Lets check if the seat in air[lane is middle or not. Middle seats have in number letter E or B.
+
+function checkIfSeatIsMiddle(seat) {
+    console.log((seat[seat.length - 1] === 'E' || seat[seat.length - 1] === 'B') ? 'Middle' : 'Not Middle');
+}
+
+checkIfSeatIsMiddle('23E');
+checkIfSeatIsMiddle('43R');
+checkIfSeatIsMiddle('23B');
+
+//Work with lower and upper case
+
+const incorrectName = 'bRyAn AdAmS';
+function normalizeName (name) {
+    let correctName = '';
+    let tempName = '';
+    for (const letter of name) {
+        if (letter === ' ') {
+            correctName += tempName[0].toUpperCase() + tempName.slice(1);
+            correctName += ' ';
+            tempName = '';
+        } else {
+            if (name.indexOf(letter) === name.length - 1){
+                tempName += letter.toLowerCase();
+                correctName += tempName[0].toUpperCase() + tempName.slice(1);
+            }
+            tempName += letter.toLowerCase();
+        }
+    }
+    return correctName;
+}
+
+console.log(normalizeName(incorrectName));
+console.log(normalizeName('bRyAn AdAmS'));
+console.log(normalizeName('xfGgsdfh sdDfbvxcb')); //?????
+console.log(normalizeName('sfzbSsdfc ghdfSgcn'));
+console.log(normalizeName('xScvbd dfbxdf Ssdfsdf asdas RsERdfsd')); //????????
+
+//Method trim
+
+const storedEmail = 'blabla@blabla.bla';
+const emailFromInput = '   blabLa@blAbla.Bla   ';
+const emailAfterTrim = emailFromInput.toLowerCase().trim()
+
+console.log(`[${storedEmail}] is ${storedEmail === emailFromInput ? 'equal' : 'not equal'} to [${emailFromInput}]`);
+console.log(`[${storedEmail}] is ${storedEmail === emailAfterTrim ? 'equal' : 'not equal'} to [${emailAfterTrim}]`);
+
+
+//method replace
+
+const priceGB = '276,34$';
+const priceUS = priceGB.replace('$', '&').replace(',', '.');
+console.log(priceUS);
+
+const announcement = 'All passengers come to boarding door 23. Boarding door 23';
+console.log(announcement);
+const correctedAnnouncement = announcement.replaceAll('door', 'gate');
+console.log(correctedAnnouncement);
+
+//Booleans
+
+const plane2 = 'A320neo';
+console.log(plane2.includes('A320'));
+console.log(plane2.startsWith('A3'));
+console.log(plane2.endsWith('neo'));
+
+
+
 
 
 
