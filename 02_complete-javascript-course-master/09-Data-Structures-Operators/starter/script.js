@@ -436,7 +436,8 @@ checkIfSeatIsMiddle('23B');
 //Work with lower and upper case
 
 const incorrectName = 'bRyAn AdAmS';
-function normalizeName (name) {
+
+function normalizeName(name) {
     let correctName = '';
     let tempName = '';
     for (const letter of name) {
@@ -445,7 +446,7 @@ function normalizeName (name) {
             correctName += ' ';
             tempName = '';
         } else {
-            if (name.indexOf(letter) === name.length - 1){
+            if (name.indexOf(letter) === name.length - 1) {
                 tempName += letter.toLowerCase();
                 correctName += tempName[0].toUpperCase() + tempName.slice(1);
             }
@@ -489,18 +490,127 @@ console.log(plane2.includes('A320'));
 console.log(plane2.startsWith('A3'));
 console.log(plane2.endsWith('neo'));
 
+//Split method returns values, divided by specific symbol
+
+const stringForSplitting = 'I love potatoes and grilled meat';
+const splittedString = stringForSplitting.split(' ');
+console.log(splittedString);
+
+//An opposite of split is join method
+
+const joinedString = splittedString.join(' ');
+console.log(joinedString);
+
+function toLowerCaseAndCapitalizeFirstLetter(string) {
+    const arrFromString = string.split(' ');
+    let resArr = [];
+    for (const [firstLetter, ...restOfString] of arrFromString) {
+        resArr.push(firstLetter.toUpperCase() + restOfString.join('').toLowerCase());
+    }
+    console.log(resArr.join(' '));
+}
+
+toLowerCaseAndCapitalizeFirstLetter(incorrectName);
+toLowerCaseAndCapitalizeFirstLetter('bRyAn AdAmS');
+toLowerCaseAndCapitalizeFirstLetter('xfGgsdfh sdDfbvxcb');
+toLowerCaseAndCapitalizeFirstLetter('sfzbSsdfc ghdfSgcn');
+toLowerCaseAndCapitalizeFirstLetter('xScvbd dfbxdf Ssdfsdf asdas RsERdfsd');
 
 
+//Methods pasStart and padEnd
+
+function paddingForString(someString) {
+    console.log(someString.padStart(40, '+').padEnd(55, '+'));
+}
+
+//In padStart method parameter means length with addition symbols until last element of string
+// |----------------padStart--------------|                = 40
+// +++++++++++++++++++++++++++++bRyAn AdAmS+++++++++++++++
+
+//In padEnds method parameter means length from the very first element of string until the last addition symbol
+// |-------------------------padEnd----------------------| = 55
+// +++++++++++++++++++++++++++++bRyAn AdAmS+++++++++++++++
+paddingForString(incorrectName);
+paddingForString('bRyAn AdAmS');
+paddingForString('xfGgsdfh sdDfbvxcb');
+paddingForString('sfzbSsdfc ghdfSgcn');
+paddingForString('xScvbd dfbxdf Ssdfsdf asdas RsERdfsd');
+
+//Hide credit card with padStart method
+
+function hideCreditCardNumberBesides4LastDigits(creditCardNumber) {
+    creditCardNumber = String(creditCardNumber);
+    console.log(creditCardNumber.slice(-4).padStart(creditCardNumber.length, '*'));
+}
+
+hideCreditCardNumberBesides4LastDigits(48576628729347858);
+hideCreditCardNumberBesides4LastDigits(473465934);
+hideCreditCardNumberBesides4LastDigits(58497386826723);
+hideCreditCardNumberBesides4LastDigits('348573984759384');
+
+//Repeat
+
+const message = 'Bad weather... All Departures Delayed...';
+
+console.log(message.repeat(5));
+
+function planesInLine(n) {
+    console.log(`There are ${n} plane in line ${'✈'.repeat(n)}`);
+}
+
+planesInLine(4);
+planesInLine(12);
+planesInLine(7);
 
 
+// Coding Challenge #4
+// Write a program that receives a list of variable names written in underscore_case
+// and convert them to camelCase.
+//     The input will come from a textarea inserted into the DOM (see code below to
+// insert the elements), and conversion will happen when the button is pressed.
+//     Test data (pasted to textarea, including spaces):
+// underscore_case
+// first_name
+// Some_Variable
+// calculate_AGE
+// delayed_departure
+// Should produce this output (5 separate console.log outputs):
+// underscoreCase   ✅
+// firstName        ✅✅
+// someVariable     ✅✅✅
+// calculateAge     ✅✅✅✅
+// delayedDeparture ✅✅✅✅✅
+// Hints:
+//     § Remember which character defines a new line in the textarea 😉
+// § The solution only needs to work for a variable made out of 2 words, like a_b
+// § Start without worrying about the ✅. Tackle that only after you have the variable
+// name conversion working 😉
+// §
+// This challenge is difficult on purpose, so start watching the solution in case
+// you're stuck. Then pause and continue!
+// Afterwards, test with your own test data!
 
 
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
 
 
+const btn = document.querySelector('button');
+const textArea = document.querySelector('textarea');
 
+btn.addEventListener('click', clickOnButton);
 
-
-
+function clickOnButton() {
+    const textFromInputField = textArea.value;
+    const arrOfStrings = textFromInputField.split('\n');
+    for (const arrOfString of arrOfStrings) {
+        let [firstWord, ...restOfWords] = arrOfString.toLowerCase().trim().split('_');
+        for (let restOfWord of restOfWords) {
+            restOfWords[restOfWords.indexOf(restOfWord)] = restOfWord[0].toUpperCase() + restOfWord.slice(1);
+        }
+        console.log(`${(firstWord + restOfWords).padEnd(20, ' ')}${'✅'.repeat(arrOfStrings.indexOf(arrOfString) + 1)}`);
+    }
+}
 
 
 
