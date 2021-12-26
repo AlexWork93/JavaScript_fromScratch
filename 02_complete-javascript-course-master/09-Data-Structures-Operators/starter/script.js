@@ -603,19 +603,19 @@ btn.addEventListener('click', clickOnButton);
 function clickOnButton() {
     const textFromInputField = textArea.value;
     const arrOfStrings = textFromInputField.split('\n');
-    for (const i in arrOfStrings) {
-        let [firstWord, ...restOfWords] = arrOfStrings[i].toLowerCase().trim().split('_');
+    for (const [i, value] of arrOfStrings.entries()) {
+        let [firstWord, ...restOfWords] = value.toLowerCase().trim().split('_');
         for (let restOfWord of restOfWords) {
             restOfWords[restOfWords.indexOf(restOfWord)] = restOfWord[0].toUpperCase() + restOfWord.slice(1);
         }
-        console.log(`${(firstWord + restOfWords.join('')).padEnd(30, ' ')}${'✅'.repeat(Number(i) + 1)}`);
+        console.log(`${(firstWord + restOfWords.join('')).padEnd(30, ' ')}${'✅'.repeat(i + 1)}`);
     }
 }
 //My Input
 // underscore_case
-// first_name
+//   first_name
 // Some_Variable
-// calculate_AGE
+//     calculate_AGE
 // delayed_departure_as_daD_ADs
 
 //My output
