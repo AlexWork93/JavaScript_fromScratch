@@ -55,6 +55,64 @@ const stringToTransform = 'People love potatoes and grilled meat';
 stringTransformer(stringToTransform, removeSpace);
 stringTransformer(stringToTransform, upperFirstWord)
 
+//functions that return another functions
+
+const greet = function (greeting) {
+    return function (name) {
+        console.log(`${greeting} ${name}!`)
+    }
+}
+
+const greetingHello = greet('Hello');
+const greetingHey = greet('Hey');
+
+greetingHello('Alex');
+greetingHey('Alex');
+
+
+//and with arrow functions
+const greetArrow = greeting => name => console.log(`${greeting} ${name}!`);
+
+greetArrow('Hello')('Alex');
+greetArrow('Hey')('Alex');
+
+//================================================================================
+
+const ukrainianAirlines = {
+    airline: 'Ukrainian Airlines',
+    iataCode: 'UA',
+    booking: [],
+    book(flightNumber, passengerName) {
+        console.log(`${passengerName} booked a seat on ${this.airline} flight ${this.iataCode}${flightNumber}`);
+        this.booking.push({flight: `${this.iataCode}${flightNumber}`, passengerName});
+    },
+};
+
+ukrainianAirlines.book(123, 'Some Passenger');
+ukrainianAirlines.book(312, 'Some Another Passenger');
+console.log(ukrainianAirlines);
+
+//method 'call' reassign 'this' to fields of passed as first argument object
+
+const euroWings = {
+    airline: 'Euro Wings',
+    iataCode: 'EW',
+    booking: [],
+}
+//besides method 'book' belongs to first object, we can also use in with second
+ukrainianAirlines.book.call(euroWings, 123, 'Some Passenger');
+ukrainianAirlines.book.call(euroWings, 312, 'Some Another Passenger');
+console.log(euroWings);
+
+const flightData = [432, 'One More Passenger'];
+ukrainianAirlines.book.call(euroWings, ...flightData);
+console.log(euroWings);
+
+// bind method
+
+
+
+
 
 
 
