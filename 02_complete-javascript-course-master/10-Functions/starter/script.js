@@ -104,14 +104,57 @@ ukrainianAirlines.book.call(euroWings, 123, 'Some Passenger');
 ukrainianAirlines.book.call(euroWings, 312, 'Some Another Passenger');
 console.log(euroWings);
 
+//also it can take an array as parameter
 const flightData = [432, 'One More Passenger'];
 ukrainianAirlines.book.call(euroWings, ...flightData);
 console.log(euroWings);
 
 // bind method
+//it calls function from some object, takes another object as parameter and returns new function
+//where all fields with 'this' keywords are changed to fields related to new object
+
+const euroWingsBook = ukrainianAirlines.book.bind(euroWings);
+euroWingsBook(123, 'passenger from method bind');
+console.log(euroWings);
+
+//bind method gives an opportunity to predefine some fields
+
+let updatedEuroWingBook = euroWingsBook.bind(euroWingsBook, 200);
+updatedEuroWingBook('passenger from updated EuroWingBook');
+console.log(euroWings);
+
+//bind method with eventListeners
+
+ukrainianAirlines.planes = 5;
+ukrainianAirlines.buyNewPlane = function () {
+    console.log(this);
+    this.planes++;
+    console.log(this.planes);
+}
+
+const buyNewPlaneButton = document.querySelector('.buy');
+buyNewPlaneButton.addEventListener('click', ukrainianAirlines.buyNewPlane.bind(ukrainianAirlines));
 
 
+//application for tax rate calculations
 
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.03, 100));
+
+const addFixedTax = addTax.bind(addTax, 0.04);
+console.log(addFixedTax(100));
+console.log(addFixedTax(5234));
+console.log(addFixedTax(13450));
+
+//same result but on function that returns another function
+
+const addTaxNew = rate => value => value + rate * value;
+
+const addTax5 = addTaxNew(0.05);
+console.log(addTax5(100));
+
+const addTax6 = addTaxNew(0.06);
+console.log(addTax6(100));
 
 
 
